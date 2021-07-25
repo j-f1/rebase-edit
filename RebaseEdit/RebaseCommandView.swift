@@ -39,48 +39,33 @@ struct RebaseCommandView: View {
 
     @State var fixupOptions = RebaseCommand.FixupMessageOptions.discard
 
-    func makeSetter(sha: String) -> (BasicRebaseCommandType) -> () {
-        { command = $0.toCommand(sha: sha, options: fixupOptions) }
+    func makeBasicView(_ type: BasicRebaseCommandType, _ sha: String) -> BasicRebaseCommandView {
+        BasicRebaseCommandView(
+            type: Binding(type, set: { command = $0.toCommand(sha: sha, options: fixupOptions) }),
+            sha: $command.sha
+        )
     }
 
     var body: some View {
         HStack {
             switch command {
             case let .pick(sha):
-                BasicRebaseCommandView(
-                    type: Binding(.pick, set: makeSetter(sha: sha)),
-                    sha: $command.sha
-                )
+                makeBasicView(.pick, sha)
             case let .reword(sha):
-                BasicRebaseCommandView(
-                    type: Binding(.reword, set: makeSetter(sha: sha)),
-                    sha: $command.sha
-                )
+                makeBasicView(.reword, sha)
             case let .edit(sha):
-                BasicRebaseCommandView(
-                    type: Binding(.edit, set: makeSetter(sha: sha)),
-                    sha: $command.sha
-                )
+                makeBasicView(.edit, sha)
             case let .squash(sha):
-                BasicRebaseCommandView(
-                    type: Binding(.squash, set: makeSetter(sha: sha)),
-                    sha: $command.sha
-                )
+                makeBasicView(.squash, sha)
             case let .fixup(sha, _):
-                BasicRebaseCommandView(
-                    type: Binding(.fixup, set: makeSetter(sha: sha)),
-                    sha: $command.sha
-                )
+                makeBasicView(.fixup, sha)
             case .exec(let command):
                 Text("Exec")
                 Text(command).font(.system(.body, design: .monospaced))
             case .break:
                 Text("Break")
             case .drop(let sha):
-                BasicRebaseCommandView(
-                    type: Binding(.drop, set: makeSetter(sha: sha)),
-                    sha: $command.sha
-                )
+                makeBasicView(.drop, sha)
             case .label(let label):
                 Text("Label")
                 Text(label)
