@@ -9,19 +9,19 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 extension UTType {
-    static var exampleText: UTType {
-        UTType(importedAs: "com.example.plain-text")
+    static var gitRebaseTodo: UTType {
+        UTType(importedAs: "com.jedfox.git-rebase-todo")
     }
 }
 
 struct RebaseEditDocument: FileDocument {
-    var text: String
+    var commands: [RebaseCommand]
 
-    init(text: String = "Hello, world!") {
-        self.text = text
+    init(text: String = "") {
+        self.commands = RebaseCommand.parse(text)
     }
 
-    static var readableContentTypes: [UTType] { [.exampleText] }
+    static var readableContentTypes: [UTType] { [.gitRebaseTodo] }
 
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
@@ -29,11 +29,11 @@ struct RebaseEditDocument: FileDocument {
         else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        text = string
+        self.commands = RebaseCommand.parse(string)
     }
     
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        let data = text.data(using: .utf8)!
+        let data = commands.map(\.rawValue).joined(separator: "\n").data(using: .utf8)!
         return .init(regularFileWithContents: data)
     }
 }
