@@ -87,4 +87,9 @@ class ODB {
             return nil
         }
     }
+
+    func contains(_ oid: OID) -> Bool {
+        var oid = oid.oid
+        return git_odb_exists(pointer, &oid) == 1
+    }
 }

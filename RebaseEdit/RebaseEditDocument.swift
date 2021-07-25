@@ -7,6 +7,7 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import SwiftGit2
 
 extension UTType {
     static var gitRebaseTodo: UTType {

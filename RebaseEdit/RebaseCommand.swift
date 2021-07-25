@@ -156,7 +156,7 @@ private enum RebaseCommandParser {
         _ tokens: [Token],
         names: [String] = makeNames(#function),
         args: Int
-    ) -> ArraySlice<Token>? {
+    ) -> [Token]? {
         validate(tokens, names: names, args: args...args)
     }
 
@@ -165,14 +165,14 @@ private enum RebaseCommandParser {
         _name: String = #function,
         names: [String]? = nil,
         args argCountRange: R
-    ) -> ArraySlice<Token>? where R.Bound == Int {
+    ) -> [Token]? where R.Bound == Int {
         let names = names ?? makeNames(_name)
         guard
             let first = tokens.first?.value,
             names.contains(first),
             argCountRange.contains(tokens.count - 1)
         else { return nil }
-        return tokens.dropFirst()
+        return Array(tokens.dropFirst())
     }
 
     private static func validateOne(
@@ -181,7 +181,7 @@ private enum RebaseCommandParser {
         names: [String]? = nil,
         tokens: [Token]
     ) -> RebaseCommand? {
-        validate(tokens, names: names ?? makeNames(_name), args: 1...).map { command($0.first!.value) }
+        validate(tokens, names: names ?? makeNames(_name), args: 1...).map { command($0[0].value) }
     }
 
     static func pick(_ tokens: [Token]) -> RebaseCommand? { validateOne(RebaseCommand.pick, tokens: tokens) }

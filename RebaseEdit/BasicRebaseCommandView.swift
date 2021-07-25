@@ -45,7 +45,8 @@ struct BasicRebaseCommandView: View {
             }
             .menuStyle(BorderlessButtonMenuStyle())
             .fixedSize()
-            Text(sha).font(.system(.body, design: .monospaced))
+            .frame(width: 65, alignment: .trailing)
+            CommitEditView(sha: $sha)
             Spacer()
         }
     }
