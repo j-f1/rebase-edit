@@ -10,7 +10,7 @@ import UniformTypeIdentifiers
 
 extension UTType {
     static var gitRebaseTodo: UTType {
-        UTType(importedAs: "com.jedfox.git-rebase-todo")
+        UTType(exportedAs: "com.jedfox.git-rebase-todo")
     }
 }
 
@@ -21,7 +21,7 @@ struct RebaseEditDocument: FileDocument {
         self.commands = RebaseCommand.parse(text)
     }
 
-    static var readableContentTypes: [UTType] { [.gitRebaseTodo] }
+    static var readableContentTypes: [UTType] { [.item] }
 
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,

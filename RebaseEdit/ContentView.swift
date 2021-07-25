@@ -11,12 +11,16 @@ struct ContentView: View {
     @Binding var document: RebaseEditDocument
 
     var body: some View {
-        Text("Hello, world!")
+        List(Array(document.commands.enumerated()), id: \.offset) { arg in
+            RebaseCommandView(
+                command: Binding { arg.element } set: { document.commands[arg.offset] = $0 }
+            )
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(document: .constant(RebaseEditDocument()))
+        ContentView(document: .constant(RebaseEditDocument(text: sample)))
     }
 }

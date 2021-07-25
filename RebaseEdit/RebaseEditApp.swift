@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct RebaseEditApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: RebaseEditDocument()) { file in
+        DocumentGroup(newDocument: RebaseEditDocument(text: sample)) { file in
             ContentView(document: file.$document)
         }
     }

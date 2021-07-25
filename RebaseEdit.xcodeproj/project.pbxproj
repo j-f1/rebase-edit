@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8555599426ADDDBD002991BE /* BasicRebaseCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */; };
 		85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E14626ADB79A0020DC09 /* RebaseEditApp.swift */; };
 		85D3E14926ADB79A0020DC09 /* RebaseEditDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E14826ADB79A0020DC09 /* RebaseEditDocument.swift */; };
 		85D3E14B26ADB79A0020DC09 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E14A26ADB79A0020DC09 /* ContentView.swift */; };
 		85D3E14D26ADB79D0020DC09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D3E14C26ADB79D0020DC09 /* Assets.xcassets */; };
 		85D3E15026ADB79D0020DC09 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85D3E14F26ADB79D0020DC09 /* Preview Assets.xcassets */; };
 		85D3E15826ADBA3A0020DC09 /* RebaseCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E15726ADBA3A0020DC09 /* RebaseCommand.swift */; };
+		85D3E15C26ADD27D0020DC09 /* RebaseCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E15B26ADD27D0020DC09 /* RebaseCommandView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRebaseCommandView.swift; sourceTree = "<group>"; };
 		85D3E14326ADB79A0020DC09 /* RebaseEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RebaseEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85D3E14626ADB79A0020DC09 /* RebaseEditApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebaseEditApp.swift; sourceTree = "<group>"; };
 		85D3E14826ADB79A0020DC09 /* RebaseEditDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebaseEditDocument.swift; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		85D3E14F26ADB79D0020DC09 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		85D3E15126ADB79D0020DC09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		85D3E15726ADBA3A0020DC09 /* RebaseCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebaseCommand.swift; sourceTree = "<group>"; };
+		85D3E15B26ADD27D0020DC09 /* RebaseCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebaseCommandView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				85D3E14626ADB79A0020DC09 /* RebaseEditApp.swift */,
 				85D3E14826ADB79A0020DC09 /* RebaseEditDocument.swift */,
 				85D3E15726ADBA3A0020DC09 /* RebaseCommand.swift */,
+				85D3E15B26ADD27D0020DC09 /* RebaseCommandView.swift */,
+				8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */,
 				85D3E14A26ADB79A0020DC09 /* ContentView.swift */,
 				85D3E14C26ADB79D0020DC09 /* Assets.xcassets */,
 				85D3E15126ADB79D0020DC09 /* Info.plist */,
@@ -146,9 +152,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				85D3E14926ADB79A0020DC09 /* RebaseEditDocument.swift in Sources */,
+				85D3E15C26ADD27D0020DC09 /* RebaseCommandView.swift in Sources */,
 				85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */,
 				85D3E14B26ADB79A0020DC09 /* ContentView.swift in Sources */,
 				85D3E15826ADBA3A0020DC09 /* RebaseCommand.swift in Sources */,
+				8555599426ADDDBD002991BE /* BasicRebaseCommandView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
