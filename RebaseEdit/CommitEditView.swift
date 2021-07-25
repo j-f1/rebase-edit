@@ -9,17 +9,19 @@
 import SwiftUI
 import SwiftGit2
 
-extension Commit {
-    var summary: some StringProtocol {
-        message.prefix(upTo: (message.firstIndex(of: "\n") ?? message.endIndex))
-    }
+func firstLine(of message: String) -> some StringProtocol {
+    message.prefix(upTo: (message.firstIndex(of: "\n") ?? message.endIndex))
 }
 
 struct CommitEditView: View {
+    let canEdit: Bool
 	 @Binding var sha: String
-    @Environment(\.repo) var repo: Repository!
+    @Binding var state: RebaseState
 
-    @State var commit: Commit?
+    @Environment(\.repo) private var repo: Repository!
+    @State private var commit: Commit?
+
+    @State private var isEditing = false
 
 	 var body: some View {
         HStack {
@@ -27,8 +29,23 @@ struct CommitEditView: View {
                 Text(sha)
                     .font(.system(.caption, design: .monospaced))
                     .foregroundColor(.secondary)
-                Text(commit.summary)
+                Text(firstLine(of: state.message ?? commit.message))
                     .lineLimit(1)
+                if canEdit && FeatureFlag[.editMessage] {
+                    Button(action: { isEditing = true }) {
+                        Text("edit")
+                            .foregroundColor(.blue)
+                    }
+                    .buttonStyle(.borderless)
+                    .popover(isPresented: $isEditing, arrowEdge: .bottom) {
+                        VStack {
+                            TextEditor(text: Binding { state.message ?? commit.message } set: { state.message = $0 })
+                                .frame(width: 250, height: 150)
+                        }
+                        .padding(5)
+                        .background(Color(NSColor.textBackgroundColor))
+                    }
+                }
             } else {
                 Image(systemName: "exclamationmark.triangle.fill")
             }
@@ -44,7 +61,7 @@ struct CommitEditView: View {
 
 struct CommitEditView_Previews: PreviewProvider {
     static var previews: some View {
-        CommitEditView(sha: .constant("2111d70"))
+        CommitEditView(canEdit: true, sha: .constant("2111d70"), state: .constant(RebaseState()))
             .environment(\.repo, try! Repository.at(URL(fileURLWithPath: "/Users/jed/Documents/github-clones/Forks/PackageList/.git/rebase-merge/git-rebase-todo")).get())
     }
 }

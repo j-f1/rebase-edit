@@ -12,6 +12,11 @@ struct RebaseEditApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: RebaseEditDocument(text: sample)) { file in
             ContentView(document: file.$document, url: file.fileURL)
+//        }.commands {
+//            CommandGroup(after: .pasteboard) {
+//                Button(
+//            }
         }
+        .windowToolbarStyle(.unifiedCompact)
     }
 }

@@ -30,6 +30,8 @@ enum BasicRebaseCommandType: String, CaseIterable {
 struct BasicRebaseCommandView: View {
     @Binding var type: BasicRebaseCommandType
     @Binding var sha: String
+    @Binding var state: RebaseState
+
     var body: some View {
         HStack {
             Menu {
@@ -46,7 +48,7 @@ struct BasicRebaseCommandView: View {
             .menuStyle(BorderlessButtonMenuStyle())
             .fixedSize()
             .frame(width: 65, alignment: .trailing)
-            CommitEditView(sha: $sha)
+            CommitEditView(canEdit: type == .reword, sha: $sha, state: $state)
             Spacer()
         }
     }
@@ -54,7 +56,7 @@ struct BasicRebaseCommandView: View {
 
 struct BasicRebaseCommandView_Previews: PreviewProvider {
     static var previews: some View {
-        BasicRebaseCommandView(type: .constant(.pick), sha: .constant("abcdef"))
+        BasicRebaseCommandView(type: .constant(.pick), sha: .constant("abcdef"), state: .constant(RebaseState()))
             .previewLayout(.sizeThatFits)
             .padding()
     }

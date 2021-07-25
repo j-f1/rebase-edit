@@ -34,15 +34,21 @@ extension Binding {
     }
 }
 
+struct RebaseState {
+    var fixupOptions = RebaseCommand.FixupMessageOptions.discard
+    var message: String?
+}
+
 struct RebaseCommandView: View {
     @Binding var command: RebaseCommand
 
-    @State var fixupOptions = RebaseCommand.FixupMessageOptions.discard
+    @State var state = RebaseState()
 
     func makeBasicView(_ type: BasicRebaseCommandType, _ sha: String) -> BasicRebaseCommandView {
         BasicRebaseCommandView(
-            type: Binding(type, set: { command = $0.toCommand(sha: sha, options: fixupOptions) }),
-            sha: $command.sha
+            type: Binding(type, set: { command = $0.toCommand(sha: sha, options: state.fixupOptions) }),
+            sha: $command.sha,
+            state: $state
         )
     }
 

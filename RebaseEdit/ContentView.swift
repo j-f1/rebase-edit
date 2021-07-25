@@ -37,9 +37,7 @@ struct ContentView: View {
     var body: some View {
         List(selection: $selection) {
             ForEach(Array(document.commands.enumerated()), id: \.element) { offset, command in
-                RebaseCommandView(
-                    command: Binding { command } set: { document.commands[offset] = $0 }
-                )
+                RebaseCommandView(command: Binding { command } set: { document.commands[offset] = $0 })
                     .contextMenu {
                         Button("Delete") {
                             document.commands.removeAll(where: selection.contains)
@@ -53,6 +51,20 @@ struct ContentView: View {
         .onDeleteCommand {
             document.commands.removeAll { selection.contains($0) }
             selection = []
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Text("\(repo.directoryURL!.deletingLastPathComponent().lastPathComponent)  ›")
+                    .font(.title3.weight(.semibold))
+                    .foregroundColor(Color(.windowFrameTextColor))
+            }
+            ToolbarItem(placement: .primaryAction) {
+                Button {
+                    print("...")
+                } label: {
+                    Image(systemName: "plus")
+                }
+            }
         }
     }
 }

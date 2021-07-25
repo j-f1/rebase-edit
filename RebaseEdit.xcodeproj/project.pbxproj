@@ -10,6 +10,7 @@
 		850DA16F26ADF01B00A0529A /* SwiftGit2.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 855559BF26ADEFBA002991BE /* SwiftGit2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		850DA17826AE029A00A0529A /* GitODB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17726AE029A00A0529A /* GitODB.swift */; };
 		850DA17A26AE181B00A0529A /* CommitEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17926AE181B00A0529A /* CommitEditView.swift */; };
+		850DA17C26AE27DC00A0529A /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17B26AE27DC00A0529A /* FeatureFlags.swift */; };
 		8555599426ADDDBD002991BE /* BasicRebaseCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */; };
 		855559CF26ADEFE4002991BE /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855559BF26ADEFBA002991BE /* SwiftGit2.framework */; };
 		85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E14626ADB79A0020DC09 /* RebaseEditApp.swift */; };
@@ -98,6 +99,7 @@
 		850DA17626AE013000A0529A /* RebaseEdit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RebaseEdit.entitlements; sourceTree = "<group>"; };
 		850DA17726AE029A00A0529A /* GitODB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitODB.swift; sourceTree = "<group>"; };
 		850DA17926AE181B00A0529A /* CommitEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommitEditView.swift; sourceTree = "<group>"; };
+		850DA17B26AE27DC00A0529A /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRebaseCommandView.swift; sourceTree = "<group>"; };
 		855559B226ADEFBA002991BE /* SwiftGit2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftGit2.xcodeproj; path = SwiftGit2/SwiftGit2.xcodeproj; sourceTree = SOURCE_ROOT; };
 		85D3E14326ADB79A0020DC09 /* RebaseEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RebaseEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 				850DA17926AE181B00A0529A /* CommitEditView.swift */,
 				8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */,
 				85D3E14A26ADB79A0020DC09 /* ContentView.swift */,
+				850DA17B26AE27DC00A0529A /* FeatureFlags.swift */,
 				850DA17726AE029A00A0529A /* GitODB.swift */,
 				85D3E14C26ADB79D0020DC09 /* Assets.xcassets */,
 				85D3E15126ADB79D0020DC09 /* Info.plist */,
@@ -337,6 +340,7 @@
 				850DA17826AE029A00A0529A /* GitODB.swift in Sources */,
 				850DA17A26AE181B00A0529A /* CommitEditView.swift in Sources */,
 				85D3E14926ADB79A0020DC09 /* RebaseEditDocument.swift in Sources */,
+				850DA17C26AE27DC00A0529A /* FeatureFlags.swift in Sources */,
 				85D3E15C26ADD27D0020DC09 /* RebaseCommandView.swift in Sources */,
 				85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */,
 				85D3E14B26ADB79A0020DC09 /* ContentView.swift in Sources */,
