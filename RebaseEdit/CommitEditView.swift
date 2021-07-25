@@ -29,8 +29,10 @@ struct CommitEditView: View {
                 Text(sha)
                     .font(.system(.caption, design: .monospaced))
                     .foregroundColor(.secondary)
-                Text(firstLine(of: state.message ?? commit.message))
+                let message = (state.message ?? commit.message).trimmingCharacters(in: .whitespacesAndNewlines)
+                Text(message)
                     .lineLimit(1)
+                    .help(message)
                 if canEdit && FeatureFlag[.editMessage] {
                     Button(action: { isEditing = true }) {
                         Text("edit")
