@@ -162,9 +162,11 @@ private enum RebaseCommandParser {
 
     private static func validate<R: RangeExpression>(
         _ tokens: [Token],
-        names: [String] = makeNames(#function),
+        _name: String = #function,
+        names: [String]? = nil,
         args argCountRange: R
     ) -> ArraySlice<Token>? where R.Bound == Int {
+        let names = names ?? makeNames(_name)
         guard
             let first = tokens.first?.value,
             names.contains(first),
@@ -175,10 +177,11 @@ private enum RebaseCommandParser {
 
     private static func validateOne(
         _ command: (String) -> RebaseCommand,
-        names: [String] = makeNames(#function),
+        _name: String = #function,
+        names: [String]? = nil,
         tokens: [Token]
     ) -> RebaseCommand? {
-        validate(tokens, names: names, args: 1...).map { command($0[0].value) }
+        validate(tokens, names: names ?? makeNames(_name), args: 1...).map { command($0.first!.value) }
     }
 
     static func pick(_ tokens: [Token]) -> RebaseCommand? { validateOne(RebaseCommand.pick, tokens: tokens) }
