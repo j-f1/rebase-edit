@@ -26,6 +26,7 @@ struct ContentView: View {
     @Binding var document: RebaseEditDocument
 
     @State private var repo: Repository
+    @State private var selection: Set<RebaseCommand> = []
 
     static func findRepo(url: URL?) -> URL {
         let rebaseDir = url!.deletingLastPathComponent()
@@ -34,11 +35,25 @@ struct ContentView: View {
     }
 
     var body: some View {
-        List(Array(document.commands.enumerated()), id: \.offset) { arg in
-            RebaseCommandView(
-                command: Binding { arg.element } set: { document.commands[arg.offset] = $0 }
-            )
-        }.environment(\.repo, repo)
+        List(selection: $selection) {
+            ForEach(Array(document.commands.enumerated()), id: \.element) { offset, command in
+                RebaseCommandView(
+                    command: Binding { command } set: { document.commands[offset] = $0 }
+                )
+                    .contextMenu {
+                        Button("Delete") {
+                            document.commands.removeAll(where: selection.contains)
+                            selection = []
+                        }
+                    }
+            }
+            .onMove { document.commands.move(fromOffsets: $0, toOffset: $1) }
+        }
+        .environment(\.repo, repo)
+        .onDeleteCommand {
+            document.commands.removeAll { selection.contains($0) }
+            selection = []
+        }
     }
 }
 

@@ -110,6 +110,68 @@ enum RebaseCommand {
     }
 }
 
+extension RebaseCommand: Hashable {
+    static func == (lhs: RebaseCommand, rhs: RebaseCommand) -> Bool {
+        switch (lhs, rhs) {
+        case (.pick(let lhs), .pick(let rhs)): return lhs == rhs
+        case (.reword(let lhs), .reword(let rhs)): return lhs == rhs
+        case (.edit(let lhs), .edit(let rhs)): return lhs == rhs
+        case (.squash(let lhs), .squash(let rhs)): return lhs == rhs
+        case (.fixup(let lhs, let loptions), .fixup(let rhs, let roptions)):
+            return lhs == rhs && loptions == roptions
+        case (.exec(let lhs), .exec(let rhs)): return lhs == rhs
+        case (.break, .break): return true
+        case (.drop(let lhs), .drop(let rhs)): return lhs == rhs
+        case (.label(let lhs), .label(let rhs)): return lhs == rhs
+        case (.reset(let lhs), .reset(let rhs)): return lhs == rhs
+        case let (.merge(lcommit, llabel, loneline), .merge(rcommit, rlabel, roneline)):
+            return lcommit?.sha == rcommit?.sha && lcommit?.reword == rcommit?.reword && llabel == rlabel && loneline == roneline
+        default: return false
+        }
+    }
+
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .pick(let sha):
+            hasher.combine("pick")
+            hasher.combine(sha)
+        case .reword(let sha):
+            hasher.combine("reword")
+            hasher.combine(sha)
+        case .edit(let sha):
+            hasher.combine("edit")
+            hasher.combine(sha)
+        case .squash(let sha):
+            hasher.combine("squash")
+            hasher.combine(sha)
+        case .fixup(let sha, let fixupMessageOptions):
+            hasher.combine("reword")
+            hasher.combine(sha)
+            hasher.combine(fixupMessageOptions)
+        case .exec(let command):
+            hasher.combine("exec")
+            hasher.combine(command)
+        case .break:
+            hasher.combine("break")
+        case .drop(let sha):
+            hasher.combine("drop")
+            hasher.combine(sha)
+        case .label(let label):
+            hasher.combine("label")
+            hasher.combine(label)
+        case .reset(let label):
+            hasher.combine("reset")
+            hasher.combine(label)
+        case .merge(let originalCommit, let label, let oneline):
+            hasher.combine("merge")
+            hasher.combine(originalCommit?.sha)
+            hasher.combine(originalCommit?.reword)
+            hasher.combine(label)
+            hasher.combine(oneline)
+        }
+    }
+}
+
 struct Token {
     let value: String
     let start: String.Index
