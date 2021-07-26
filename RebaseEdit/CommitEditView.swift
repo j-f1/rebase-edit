@@ -9,8 +9,8 @@
 import SwiftUI
 import SwiftGit2
 
-func firstLine(of message: String) -> some StringProtocol {
-    message.prefix(upTo: (message.firstIndex(of: "\n") ?? message.endIndex))
+func firstLine(of message: String) -> String {
+    String(message.prefix(upTo: (message.firstIndex(of: "\n") ?? message.endIndex)))
 }
 
 struct CommitEditView: View {

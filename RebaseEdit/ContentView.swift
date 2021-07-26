@@ -28,6 +28,8 @@ struct ContentView: View {
     @State private var repo: Repository
     @State private var selection: Set<RebaseCommand> = []
 
+    @State private var showAddPopover = false
+
     static func findRepo(url: URL?) -> URL {
         let rebaseDir = url!.deletingLastPathComponent()
         let gitDir = rebaseDir.deletingLastPathComponent().path
@@ -47,7 +49,6 @@ struct ContentView: View {
             }
             .onMove { document.commands.move(fromOffsets: $0, toOffset: $1) }
         }
-        .environment(\.repo, repo)
         .onDeleteCommand {
             document.commands.removeAll { selection.contains($0) }
             selection = []
@@ -59,13 +60,21 @@ struct ContentView: View {
                     .foregroundColor(Color(.windowFrameTextColor))
             }
             ToolbarItem(placement: .primaryAction) {
-                Button {
-                    print("...")
-                } label: {
+                Button { showAddPopover = true } label: {
                     Image(systemName: "plus")
+                }
+                .popover(isPresented: $showAddPopover, arrowEdge: .bottom) {
+                    CommitSearchField { commit in
+                        let lengths: [Int] = document.commands.map(Binding.constant).compactMap(\.sha?.wrappedValue.count)
+                        let targetLength = lengths.max() ?? 7
+                        let sha = String(commit.oid.description.prefix(targetLength))
+                        document.commands.insert(.pick(sha: sha), at: 0)
+                        showAddPopover = false
+                    }
                 }
             }
         }
+        .environment(\.repo, repo)
     }
 }
 

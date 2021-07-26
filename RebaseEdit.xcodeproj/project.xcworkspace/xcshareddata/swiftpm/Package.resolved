@@ -2,21 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Clibgit2",
-        "repositoryURL": "https://github.com/light-tech/Clibgit2.git",
+        "package": "SwiftUI-Introspect",
+        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect",
         "state": {
-          "branch": "master",
-          "revision": "880873a8e641717810c97e8cc478056d4e1f1022",
-          "version": null
-        }
-      },
-      {
-        "package": "SwiftGit2",
-        "repositoryURL": "https://github.com/light-tech/SwiftGit2",
-        "state": {
-          "branch": "spm",
-          "revision": "03e7f41edf53658958c74db106749923ca9dcda0",
-          "version": null
+          "branch": null,
+          "revision": "2e09be8af614401bc9f87d40093ec19ce56ccaf2",
+          "version": "0.1.3"
         }
       }
     ]

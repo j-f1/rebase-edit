@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension Binding where Value == RebaseCommand {
-    var sha: Binding<String> {
+    var sha: Binding<String>? {
         switch wrappedValue {
         case let .pick(sha):
             return Binding<String> { sha } set: { wrappedValue = .pick(sha: $0) }
@@ -23,7 +23,8 @@ extension Binding where Value == RebaseCommand {
         case .drop(let sha):
             return Binding<String> { sha } set: { wrappedValue = .drop(sha: $0) }
         default:
-            fatalError("Attempted to read sha from binding containing `\(wrappedValue.rawValue)`")
+            return nil
+//            fatalError("Attempted to read sha from binding containing `\(wrappedValue.rawValue)`")
         }
     }
 }
@@ -47,7 +48,7 @@ struct RebaseCommandView: View {
     func makeBasicView(_ type: BasicRebaseCommandType, _ sha: String) -> BasicRebaseCommandView {
         BasicRebaseCommandView(
             type: Binding(type, set: { command = $0.toCommand(sha: sha, options: state.fixupOptions) }),
-            sha: $command.sha,
+            sha: $command.sha!,
             state: $state
         )
     }
