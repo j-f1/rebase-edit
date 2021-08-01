@@ -41,6 +41,9 @@ struct CommitSearchView<Picker: View>: View {
                     }
             }
             if let found = found {
+                SelectButton {
+                    onSelect(found)
+                }
                 HStack {
                     Text(found.message.trimmingCharacters(in: .whitespacesAndNewlines))
                         .fontWeight(.medium)
@@ -52,9 +55,8 @@ struct CommitSearchView<Picker: View>: View {
                 .padding(.vertical, 5)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity)
-                SelectButton {
-                    onSelect(found)
-                }
+            } else {
+                SelectButton {}.disabled(true)
             }
             if repo != nil {
                 let commits = found?.parents

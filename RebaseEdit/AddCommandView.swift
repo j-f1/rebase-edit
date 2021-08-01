@@ -57,12 +57,10 @@ struct AddCommandView: View {
             case .break:
                 HStack {
                     picker
-                    Button {
-                        onSelect(.break)
-                    } label: {
-                        Text("Add").padding(.horizontal)
-                    }.keyboardShortcut(.defaultAction)
                     Spacer()
+                }
+                SelectButton {
+                    onSelect(.break)
                 }
             case .label:
                 LabelCommandCreator(picker: picker) { label in
