@@ -43,13 +43,21 @@ struct ContentView: View {
         selection = []
     }
 
+    var hashLength: Int {
+        let lengths: [Int] = document.commands.map(Binding.constant).compactMap(\.sha?.wrappedValue.count)
+        return lengths.max() ?? 7
+    }
+
     var body: some View {
         List(selection: $selection) {
             ForEach(Array(document.commands.enumerated()), id: \.element) { offset, command in
                 RebaseCommandView(command: Binding { command } set: { document.commands[offset] = $0 })
                     .contextMenu {
                         Button("Delete", action: onDelete)
+                            .keyboardShortcut(.delete, modifiers: [])
                     }
+                    .fixedSize(horizontal: false, vertical: true)
+                    .contentShape(Rectangle())
             }
             .onMove { document.commands.move(fromOffsets: $0, toOffset: $1) }
         }
@@ -70,11 +78,9 @@ struct ContentView: View {
                     Image(systemName: "plus")
                 }
                 .popover(isPresented: $showAddPopover, arrowEdge: .bottom) {
-                    CommitSearchField { commit in
-                        let lengths: [Int] = document.commands.map(Binding.constant).compactMap(\.sha?.wrappedValue.count)
-                        let targetLength = lengths.max() ?? 7
-                        let sha = String(commit.oid.description.prefix(targetLength))
-                        document.commands.insert(.pick(sha: sha), at: 0)
+                    AddCommandView(hashLength: hashLength) { command in
+                        document.commands.insert(command, at: 0)
+                        selection = [command]
                         showAddPopover = false
                     }
                 }

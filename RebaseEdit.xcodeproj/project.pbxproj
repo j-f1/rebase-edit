@@ -11,8 +11,12 @@
 		850DA17826AE029A00A0529A /* GitODB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17726AE029A00A0529A /* GitODB.swift */; };
 		850DA17A26AE181B00A0529A /* CommitEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17926AE181B00A0529A /* CommitEditView.swift */; };
 		850DA17C26AE27DC00A0529A /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17B26AE27DC00A0529A /* FeatureFlags.swift */; };
-		850DA17E26AE287E00A0529A /* CommitSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17D26AE287E00A0529A /* CommitSearchField.swift */; };
+		850DA17E26AE287E00A0529A /* AddCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA17D26AE287E00A0529A /* AddCommandView.swift */; };
 		850DA18126AE35A600A0529A /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 850DA18026AE35A600A0529A /* Introspect */; };
+		850DA18326B6EC8600A0529A /* CommitSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18226B6EC8600A0529A /* CommitSearchView.swift */; };
+		850DA18526B6EFD400A0529A /* ExecCommandCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18426B6EFD400A0529A /* ExecCommandCreator.swift */; };
+		850DA18726B6F08D00A0529A /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18626B6F08D00A0529A /* SelectButton.swift */; };
+		850DA18926B6F99600A0529A /* LabelCommandCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18826B6F99600A0529A /* LabelCommandCreator.swift */; };
 		8555599426ADDDBD002991BE /* BasicRebaseCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */; };
 		855559CF26ADEFE4002991BE /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855559BF26ADEFBA002991BE /* SwiftGit2.framework */; };
 		85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E14626ADB79A0020DC09 /* RebaseEditApp.swift */; };
@@ -102,7 +106,11 @@
 		850DA17726AE029A00A0529A /* GitODB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitODB.swift; sourceTree = "<group>"; };
 		850DA17926AE181B00A0529A /* CommitEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommitEditView.swift; sourceTree = "<group>"; };
 		850DA17B26AE27DC00A0529A /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
-		850DA17D26AE287E00A0529A /* CommitSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitSearchField.swift; sourceTree = "<group>"; };
+		850DA17D26AE287E00A0529A /* AddCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCommandView.swift; sourceTree = "<group>"; };
+		850DA18226B6EC8600A0529A /* CommitSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitSearchView.swift; sourceTree = "<group>"; };
+		850DA18426B6EFD400A0529A /* ExecCommandCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecCommandCreator.swift; sourceTree = "<group>"; };
+		850DA18626B6F08D00A0529A /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
+		850DA18826B6F99600A0529A /* LabelCommandCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCommandCreator.swift; sourceTree = "<group>"; };
 		8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRebaseCommandView.swift; sourceTree = "<group>"; };
 		855559B226ADEFBA002991BE /* SwiftGit2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftGit2.xcodeproj; path = SwiftGit2/SwiftGit2.xcodeproj; sourceTree = SOURCE_ROOT; };
 		85D3E14326ADB79A0020DC09 /* RebaseEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RebaseEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +188,10 @@
 		85D3E14526ADB79A0020DC09 /* RebaseEdit */ = {
 			isa = PBXGroup;
 			children = (
+				850DA18626B6F08D00A0529A /* SelectButton.swift */,
+				850DA18426B6EFD400A0529A /* ExecCommandCreator.swift */,
+				850DA18826B6F99600A0529A /* LabelCommandCreator.swift */,
+				850DA18226B6EC8600A0529A /* CommitSearchView.swift */,
 				850DA17626AE013000A0529A /* RebaseEdit.entitlements */,
 				85D3E14626ADB79A0020DC09 /* RebaseEditApp.swift */,
 				85D3E14826ADB79A0020DC09 /* RebaseEditDocument.swift */,
@@ -188,7 +200,7 @@
 				850DA17926AE181B00A0529A /* CommitEditView.swift */,
 				8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */,
 				85D3E14A26ADB79A0020DC09 /* ContentView.swift */,
-				850DA17D26AE287E00A0529A /* CommitSearchField.swift */,
+				850DA17D26AE287E00A0529A /* AddCommandView.swift */,
 				850DA17B26AE27DC00A0529A /* FeatureFlags.swift */,
 				850DA17726AE029A00A0529A /* GitODB.swift */,
 				85D3E14C26ADB79D0020DC09 /* Assets.xcassets */,
@@ -350,14 +362,18 @@
 			files = (
 				850DA17826AE029A00A0529A /* GitODB.swift in Sources */,
 				850DA17A26AE181B00A0529A /* CommitEditView.swift in Sources */,
+				850DA18526B6EFD400A0529A /* ExecCommandCreator.swift in Sources */,
 				85D3E14926ADB79A0020DC09 /* RebaseEditDocument.swift in Sources */,
 				850DA17C26AE27DC00A0529A /* FeatureFlags.swift in Sources */,
+				850DA18326B6EC8600A0529A /* CommitSearchView.swift in Sources */,
 				85D3E15C26ADD27D0020DC09 /* RebaseCommandView.swift in Sources */,
 				85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */,
 				85D3E14B26ADB79A0020DC09 /* ContentView.swift in Sources */,
+				850DA18926B6F99600A0529A /* LabelCommandCreator.swift in Sources */,
+				850DA18726B6F08D00A0529A /* SelectButton.swift in Sources */,
 				85D3E15826ADBA3A0020DC09 /* RebaseCommand.swift in Sources */,
 				8555599426ADDDBD002991BE /* BasicRebaseCommandView.swift in Sources */,
-				850DA17E26AE287E00A0529A /* CommitSearchField.swift in Sources */,
+				850DA17E26AE287E00A0529A /* AddCommandView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

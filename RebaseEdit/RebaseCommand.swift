@@ -7,6 +7,33 @@
 
 import Foundation
 
+enum RebaseCommandType: String, CaseIterable, Identifiable {
+    case pick, reword, edit, squash, fixup,
+         exec, `break`, drop, label, reset,
+         merge
+
+    var id: RebaseCommandType { self }
+
+    func command(sha: String, fixup options: RebaseCommand.FixupMessageOptions) -> RebaseCommand? {
+        switch self {
+        case .pick:
+            return .pick(sha: sha)
+        case .reword:
+            return .reword(sha: sha)
+        case .edit:
+            return .edit(sha: sha)
+        case .squash:
+            return .squash(sha: sha)
+        case .fixup:
+            return .fixup(sha: sha, options)
+        case .drop:
+            return .drop(sha: sha)
+        default:
+            return nil
+        }
+    }
+}
+
 enum RebaseCommand {
     /// `p, pick <commit>` = use commit
     case pick(sha: String)
@@ -41,7 +68,7 @@ enum RebaseCommand {
     /// if no original merge commit was specified); use `-c <commit>` to reword the commit message
     case merge(originalCommit: (sha: String, reword: Bool)?, label: String, oneline: String?)
 
-    enum FixupMessageOptions: String {
+    enum FixupMessageOptions: String, CaseIterable {
         case discard = ""
         case use = "-C "
         case useAndEdit = "-c "
