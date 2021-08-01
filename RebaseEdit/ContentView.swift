@@ -53,14 +53,19 @@ struct ContentView: View {
             }
             .onMove { document.commands.move(fromOffsets: $0, toOffset: $1) }
         }
-        .preference(key: OnDeletePrefKey.self, value: scenePhase == .active ? onDelete : nil)
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Text("\(repo.directoryURL!.deletingLastPathComponent().lastPathComponent)  ›")
                     .font(.title3.weight(.semibold))
                     .foregroundColor(Color(.windowFrameTextColor))
             }
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button(action: onDelete) {
+                    Image(systemName: "trash")
+                }
+                .keyboardShortcut(.delete, modifiers: [])
+                .disabled(selection.isEmpty)
+
                 Button { showAddPopover = true } label: {
                     Image(systemName: "plus")
                 }
