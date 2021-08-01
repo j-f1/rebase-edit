@@ -30,10 +30,17 @@ struct ContentView: View {
 
     @State private var showAddPopover = false
 
+    @Environment(\.scenePhase) var scenePhase
+
     static func findRepo(url: URL?) -> URL {
         let rebaseDir = url!.deletingLastPathComponent()
         let gitDir = rebaseDir.deletingLastPathComponent().path
         return URL(fileURLWithPath: String(gitDir), isDirectory: false)
+    }
+
+    private func onDelete() {
+        document.commands.removeAll(where: selection.contains)
+        selection = []
     }
 
     var body: some View {
@@ -41,18 +48,12 @@ struct ContentView: View {
             ForEach(Array(document.commands.enumerated()), id: \.element) { offset, command in
                 RebaseCommandView(command: Binding { command } set: { document.commands[offset] = $0 })
                     .contextMenu {
-                        Button("Delete") {
-                            document.commands.removeAll(where: selection.contains)
-                            selection = []
-                        }
+                        Button("Delete", action: onDelete)
                     }
             }
             .onMove { document.commands.move(fromOffsets: $0, toOffset: $1) }
         }
-        .onDeleteCommand {
-            document.commands.removeAll { selection.contains($0) }
-            selection = []
-        }
+        .preference(key: OnDeletePrefKey.self, value: scenePhase == .active ? onDelete : nil)
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Text("\(repo.directoryURL!.deletingLastPathComponent().lastPathComponent)  ›")
