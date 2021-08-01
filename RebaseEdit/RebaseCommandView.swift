@@ -68,16 +68,27 @@ struct RebaseCommandView: View {
                 makeBasicView(.fixup, sha)
             case .exec(let command):
                 Text("Exec")
-                Text(command).font(.system(.body, design: .monospaced))
+                    .frame(width: 65, alignment: .trailing)
+                Text(command)
+                    .font(.system(.body, design: .monospaced))
+                Button { print("edit") } label: {
+                    Image(systemName: "pencil")
+                        .imageScale(.small)
+                        .font(.body.weight(.black))
+                }.buttonStyle(.borderless).hidden()
             case .break:
                 Text("Break")
+                    .frame(width: 65, alignment: .trailing)
+                Color.secondary.frame(height: 1)
             case .drop(let sha):
                 makeBasicView(.drop, sha)
             case .label(let label):
                 Text("Label")
+                    .frame(width: 65, alignment: .trailing)
                 Text(label)
             case .reset(let label):
-                Text("Label")
+                Text("Reset")
+                    .frame(width: 65, alignment: .trailing)
                 Text(label)
             case .merge(let originalCommit, let label, let oneline):
                 Text("Merge")
