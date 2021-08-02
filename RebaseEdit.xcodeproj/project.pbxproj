@@ -17,6 +17,7 @@
 		850DA18526B6EFD400A0529A /* ExecCommandCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18426B6EFD400A0529A /* ExecCommandCreator.swift */; };
 		850DA18726B6F08D00A0529A /* SelectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18626B6F08D00A0529A /* SelectButton.swift */; };
 		850DA18926B6F99600A0529A /* LabelCommandCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18826B6F99600A0529A /* LabelCommandCreator.swift */; };
+		850DA18B26B8434400A0529A /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DA18A26B8434400A0529A /* EditButton.swift */; };
 		8555599426ADDDBD002991BE /* BasicRebaseCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */; };
 		855559CF26ADEFE4002991BE /* SwiftGit2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855559BF26ADEFBA002991BE /* SwiftGit2.framework */; };
 		85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85D3E14626ADB79A0020DC09 /* RebaseEditApp.swift */; };
@@ -111,6 +112,7 @@
 		850DA18426B6EFD400A0529A /* ExecCommandCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExecCommandCreator.swift; sourceTree = "<group>"; };
 		850DA18626B6F08D00A0529A /* SelectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectButton.swift; sourceTree = "<group>"; };
 		850DA18826B6F99600A0529A /* LabelCommandCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCommandCreator.swift; sourceTree = "<group>"; };
+		850DA18A26B8434400A0529A /* EditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicRebaseCommandView.swift; sourceTree = "<group>"; };
 		855559B226ADEFBA002991BE /* SwiftGit2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftGit2.xcodeproj; path = SwiftGit2/SwiftGit2.xcodeproj; sourceTree = SOURCE_ROOT; };
 		85D3E14326ADB79A0020DC09 /* RebaseEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RebaseEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,7 @@
 				85D3E14826ADB79A0020DC09 /* RebaseEditDocument.swift */,
 				85D3E15726ADBA3A0020DC09 /* RebaseCommand.swift */,
 				85D3E15B26ADD27D0020DC09 /* RebaseCommandView.swift */,
+				850DA18A26B8434400A0529A /* EditButton.swift */,
 				850DA17926AE181B00A0529A /* CommitEditView.swift */,
 				8555599326ADDDBD002991BE /* BasicRebaseCommandView.swift */,
 				85D3E14A26ADB79A0020DC09 /* ContentView.swift */,
@@ -370,6 +373,7 @@
 				85D3E14726ADB79A0020DC09 /* RebaseEditApp.swift in Sources */,
 				85D3E14B26ADB79A0020DC09 /* ContentView.swift in Sources */,
 				850DA18926B6F99600A0529A /* LabelCommandCreator.swift in Sources */,
+				850DA18B26B8434400A0529A /* EditButton.swift in Sources */,
 				850DA18726B6F08D00A0529A /* SelectButton.swift in Sources */,
 				85D3E15826ADBA3A0020DC09 /* RebaseCommand.swift in Sources */,
 				8555599426ADDDBD002991BE /* BasicRebaseCommandView.swift in Sources */,

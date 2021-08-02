@@ -40,6 +40,25 @@ struct RebaseState {
     var message: String?
 }
 
+struct RebaseCommandRow<Label: View, Content: View>: View {
+    let label: Label
+    let content: Content
+
+    var body: some View {
+        HStack {
+            label.frame(width: 65, alignment: .trailing)
+            content
+        }
+    }
+}
+
+extension RebaseCommandRow where Label == Text {
+    init(_ label: String, @ViewBuilder content: () -> Content) {
+        self.label = Text(label).fontWeight(.medium)
+        self.content = content()
+    }
+}
+
 struct RebaseCommandView: View {
     @Binding var command: RebaseCommand
 
@@ -54,44 +73,49 @@ struct RebaseCommandView: View {
     }
 
     var body: some View {
-        HStack {
-            switch command {
-            case let .pick(sha):
-                makeBasicView(.pick, sha)
-            case let .reword(sha):
-                makeBasicView(.reword, sha)
-            case let .edit(sha):
-                makeBasicView(.edit, sha)
-            case let .squash(sha):
-                makeBasicView(.squash, sha)
-            case let .fixup(sha, _):
-                makeBasicView(.fixup, sha)
-            case .exec(let command):
-                Text("Exec")
-                    .frame(width: 65, alignment: .trailing)
+        switch command {
+        case let .pick(sha):
+            makeBasicView(.pick, sha)
+        case let .reword(sha):
+            makeBasicView(.reword, sha)
+        case let .edit(sha):
+            makeBasicView(.edit, sha)
+        case let .squash(sha):
+            makeBasicView(.squash, sha)
+        case let .fixup(sha, _):
+            makeBasicView(.fixup, sha)
+        case .exec(let command):
+            RebaseCommandRow("Exec") {
                 Text(command)
                     .font(.system(.body, design: .monospaced))
-                Button { print("edit") } label: {
-                    Image(systemName: "pencil")
-                        .imageScale(.small)
-                        .font(.body.weight(.black))
-                }.buttonStyle(.borderless).hidden()
-            case .break:
-                Text("Break")
-                    .frame(width: 65, alignment: .trailing)
+                EditButton(
+                    initialText: command,
+                    font: .system(.body, design: .monospaced),
+                    onSave: { self.command = .exec(command: $0) }
+                )
+            }
+        case .break:
+            RebaseCommandRow("Break") {
                 Color.secondary.frame(height: 1)
-            case .drop(let sha):
-                makeBasicView(.drop, sha)
-            case .label(let label):
-                Text("Label")
-                    .frame(width: 65, alignment: .trailing)
+            }
+        case .drop(let sha):
+            makeBasicView(.drop, sha)
+        case .label(let label):
+            RebaseCommandRow("Label") {
                 Text(label)
-            case .reset(let label):
-                Text("Reset")
-                    .frame(width: 65, alignment: .trailing)
+                EditButton(
+                    initialText: label,
+                    font: .body,
+                    onSave: { self.command = .label(label: $0) }
+                )
+            }
+        case .reset(let label):
+            RebaseCommandRow("Reset") {
                 Text(label)
-            case .merge(let originalCommit, let label, let oneline):
-                Text("Merge")
+                EditButton(initialText: label, onSave: { self.command = .reset(label: $0) })
+            }
+        case .merge:
+            RebaseCommandRow("Merge") {
                 Text("🐙")
             }
         }

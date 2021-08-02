@@ -76,6 +76,7 @@ struct AddCommandView: View {
         }
         .frame(width: 300)
         .padding(10)
+        .textFieldStyle(.roundedBorder)
     }
 }
 
