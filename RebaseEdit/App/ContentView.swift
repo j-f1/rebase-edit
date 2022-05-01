@@ -50,8 +50,8 @@ struct ContentView: View {
 
     var body: some View {
         List(selection: $selection) {
-            ForEach(Array(document.commands.enumerated()), id: \.element) { offset, command in
-                RebaseCommandView(command: Binding { command } set: { document.commands[offset] = $0 })
+            ForEach($document.commands) { $command in
+                RebaseCommandView(isSelected: false, command: $command)
                     .contextMenu {
                         Button("Delete", action: onDelete)
                             .keyboardShortcut(.delete, modifiers: [])

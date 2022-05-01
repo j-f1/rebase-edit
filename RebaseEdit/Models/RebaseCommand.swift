@@ -34,7 +34,7 @@ enum RebaseCommandType: String, CaseIterable, Identifiable {
     }
 }
 
-enum RebaseCommand {
+enum RebaseCommand: Identifiable {
     /// `p, pick <commit>` = use commit
     case pick(sha: String)
 
@@ -135,6 +135,8 @@ enum RebaseCommand {
         ?? RebaseCommandParser.reset(tokens)
         ?? RebaseCommandParser.merge(tokens, line: line)
     }
+
+    var id: RebaseCommand { self }
 }
 
 extension RebaseCommand: Hashable {

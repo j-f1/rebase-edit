@@ -60,12 +60,14 @@ extension RebaseCommandRow where Label == Text {
 }
 
 struct RebaseCommandView: View {
+    let isSelected: Bool
     @Binding var command: RebaseCommand
 
     @State var state = RebaseState()
 
     func makeBasicView(_ type: BasicRebaseCommandType, _ sha: String) -> BasicRebaseCommandView {
         BasicRebaseCommandView(
+            isSelected: isSelected,
             type: Binding(type, set: { command = $0.toCommand(sha: sha, options: state.fixupOptions) }),
             sha: $command.sha!,
             state: $state
@@ -124,6 +126,6 @@ struct RebaseCommandView: View {
 
 struct RebaseCommandView_Previews: PreviewProvider {
     static var previews: some View {
-        RebaseCommandView(command: .constant(.pick(sha: "deadbeef")))
+        RebaseCommandView(isSelected: false, command: .constant(.pick(sha: "deadbeef")))
     }
 }
